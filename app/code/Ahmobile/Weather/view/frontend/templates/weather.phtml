@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900,300);
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: #6C6F72;
+}
+
+.widget-container {
+    width: 540px;
+    height: 150px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 25px;
+    border: 5px solid #6C6F72;
+    margin: 3px;
+  }
+  
+.weather-text{
+    padding: 1 1 1 20;
+}
+
+.left {
+  text-align: center;
+  height: 60%;
+  width: 33%;
+  padding: 20px 0 0 20px;
+  display: inline-block;
+  line-height: 40px;
+}
+
+.right {
+  height: 20%;
+  width: 48%;
+  float: right;
+  padding:20px 0 0 0 ;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+#city {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+#temperature,
+#celsius {
+  display: inline;
+  vertical-align: middle;
+}
+
+#temperature {
+  font-size: 33px;
+  font-weight: 800;
+  margin-right: 5px;
+}
+
+#celsius {
+  margin-right: 10px;
+  font-size: 22px;
+  font-weight: 800;
+}
+#text {
+  float: left;
+  width: 33%;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.values {
+  float: right;
+  font-size: 16px;
+  font-weight: 400;
+  width: 67%;
+  /* margin-top: 12px;
+  margin-left: 40px; */
+}
+.space{
+  height: 26px;
+}
+
+  </style>
+  </head>
+  <body>
+
+    <?php
+ 
+    $url = "http://api.openweathermap.org/data/2.5/weather?q=HaNoi&appid=d3b83ec5eeb668e52d0d436a7b7f0d3d";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $response = json_decode(curl_exec($ch), true);
+
+    $windspeed = $response['wind']['speed'];
+    $humidity = $response['main']['humidity'];
+    $city = $response['name']; 
+    $temp = $response['main']['temp'];
+    $m=$response['weather'];
+    $main=$m[0]['main'];
+
+    curl_close($ch);
+    ?> 
+<div class="wrapper">
+<div class="widget-container">
+    <div class="left">
+      <h1 class="city" id="city"><?php echo $city?>,Vietnam</h1>
+      <p class="weather-text"> <?php echo $main ?></p>
+      <h1 id="temperature"><?php echo $temp - 273 ?></h1>
+      <h2 id="celsius">&degC</h2>
+    </div>
+
+    <div class="right">
+      <div id="text">
+      <p>Wind Speed :</p>
+        <br>
+        <br>
+      <p>Humidity :</p>
+      </div>
+      <div class="values">
+        <p><?php echo $windspeed ?> m/s</p>
+      <div class='space'></div>
+        <p><?php echo $humidity ?> %</p>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+    
+
+</html>

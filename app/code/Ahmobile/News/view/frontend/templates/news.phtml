@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  padding: 20px;
+  grid-gap: 40px;
+}
+.cards .card{
+  background-color: #69138f;
+color: #fff;
+border-radius: 20px;
+box-shadow: 0px 0 15px rgba(0, 0, 0, 0.2);
+}
+.cards .container{
+  position: relative;
+padding-left: 63px;
+width: 83%;
+overflow-wrap: break-word;
+}
+.cards .date{
+  padding-left: 63px;
+}
+.cards .card .container img{
+  width: 85%;
+display: block;
+border-radius: 10px 10px 0 0;
+}
+.btn1{
+  text-align: center;
+padding-bottom: 20px;
+padding-top: 20px;
+}
+.cards h3{
+  font-weight: 600;
+line-height: 1.1;
+font-size: 20px;
+margin-top: 2rem;
+margin-bottom: 2rem;
+text-align: center;
+margin-left: 10px;
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+<?php
+header('Content-type:text/html;charset=utf-8');
+
+$url = 'https://vnexpress.net/rss/kinh-doanh.rss';
+$vne = simplexml_load_file($url);
+$channel = $vne->channel;
+?>
+
+<div class="cards">
+<?php foreach($channel->item as $item){ ?>
+<div class="card card1">
+  <div class="noi-dung">
+  <h3>
+  <?php echo $item->title ?>
+</h3>
+<div class="container"><?php echo $item->description ?></div>
+<p class="date"> <?php echo $item->pubDate ?></p>
+<div class='btn1'>
+<button><a href='<?php echo $item->link ?>'>Đọc thêm</a> 
+</button>
+</div>
+
+</div>
+</div>
+<?php } ?>
+</div> 
+
+</body>
+

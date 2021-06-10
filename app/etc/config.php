@@ -249,9 +249,14 @@ return [
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
+        'Ahmobile_Exrate' => 1,
+        'Ahmobile_News' => 1,
+        'Ahmobile_Weather' => 1,
         'Amazon_Core' => 1,
         'Amazon_Login' => 1,
         'Amazon_Payment' => 1,
+        'Boolfly_MomoWallet' => 1,
+        'Boolfly_ZaloPay' => 1,
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Klarna_Core' => 1,
@@ -262,6 +267,7 @@ return [
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Vnpayment_VNPAY' => 1,
         'Yotpo_Yotpo' => 1
     ]
 ];
